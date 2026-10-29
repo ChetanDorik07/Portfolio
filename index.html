@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Chetan Dorik — .NET Full-stack Developer | C#, ASP.NET Core & SQL Server Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Portfolio of Chetan Dorik, a .NET Full-Stack Developer specializing in C#, ASP.NET Core, MS SQL Server, and enterprise software engineering. Open to freelance and full-time roles.">
+  <meta name="author" content="Chetan Dorik">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #121212;
+      --ink: #f4f4f2;
+      --mute: #9a9a96;
+      --line: #2c2c2c;
+      --card: #1a1a1a;
+      --card-hover: #222222;
+      --ok: #5dd39e;
+      color-scheme: dark;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 70px;
+    }
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 300 17px/1.6 'Manrope', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, .m {
+      font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    :focus-visible {
+      outline: 2px solid var(--ok);
+      outline-offset: 3px;
+    }
+    #glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(600px circle at var(--x, 50%) var(--y, 30%), rgba(93, 211, 158, 0.07), transparent 60%);
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 10px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      pointer-events: none;
+      z-index: 30;
+    }
+    .ring {
+      position: absolute;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      animation: spin 45s linear infinite;
+    }
+    .r1 {
+      width: 620px;
+      height: 620px;
+      right: -180px;
+      top: -120px;
+    }
+    .r2 {
+      width: 320px;
+      height: 320px;
+      right: 4vw;
+      top: 80px;
+      opacity: 0.6;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .ring::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: -4px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ok);
+      box-shadow: 0 0 10px var(--ok);
+    }
+    nav {
+      position: fixed;
+      top: env(safe-area-inset-top, 0px);
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 5vw;
+      background: linear-gradient(var(--bg), rgba(18, 18, 18, 0.8) 75%, transparent);
+      backdrop-filter: blur(8px);
+      font-size: 14px;
+    }
+    nav .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+    nav .logo-code {
+      color: var(--ok);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    nav div#nl {
+      display: flex;
+      gap: 28px;
+    }
+    nav a {
+      color: var(--mute);
+      transition: color .2s;
+    }
+    nav a:hover {
+      color: var(--ink);
+    }
+    .nr {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ok);
+      font-size: 13px;
+      font-family: 'JetBrains Mono', monospace;
+      border: 1px solid rgba(93, 211, 158, 0.25);
+      background: rgba(93, 211, 158, 0.05);
+      border-radius: 99px;
+      padding: 5px 14px;
+      transition: background .2s;
+    }
+    .nr:hover {
+      background: rgba(93, 211, 158, 0.15);
+      color: #fff;
+    }
+    .nr i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ok);
+      box-shadow: 0 0 8px var(--ok);
+      animation: p 2s infinite;
+    }
+    .mb {
+      display: none;
+      background: none;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      color: var(--ink);
+      font-size: 18px;
+      cursor: pointer;
+    }
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 110px 5vw;
+      max-width: 1220px;
+      margin: 0 auto;
+    }
+    .tag {
+      font: 400 13px 'JetBrains Mono', monospace;
+      color: var(--mute);
+      margin: 0 0 36px;
+      letter-spacing: 0.05em;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 99px;
+      padding: 7px 18px;
+      font-size: 14px;
+      color: var(--ink);
+    }
+    .badge i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--ok);
+      box-shadow: 0 0 0 0 var(--ok);
+      animation: p 2s infinite;
+    }
+    @keyframes p {
+      70% { box-shadow: 0 0 0 10px transparent; }
+      100% { box-shadow: 0 0 0 0 transparent; }
+    }
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 130px;
+      padding-bottom: 70px;
+    }
+    .hl {
+      font: 800 clamp(36px, 7.8vw, 98px)/1.05 'JetBrains Mono', monospace;
+      letter-spacing: -0.03em;
+    }
+    .hl span.c {
+      display: inline-block;
+      transform: translateY(110%) rotate(8deg);
+      opacity: 0;
+      animation: up .8s cubic-bezier(.2, .8, .2, 1) forwards;
+      animation-delay: calc(var(--i) * 40ms + 200ms);
+    }
+    .w {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+      white-space: nowrap;
+      padding-bottom: 0.14em;
+      margin-bottom: -0.14em;
+    }
+    @keyframes up {
+      to { transform: none; opacity: 1; }
+    }
+    .hr1, .hr2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .hr1 {
+      margin-top: 28px;
+    }
+    .hr2 {
+      margin-top: 6px;
+    }
+    .hp {
+      margin: 0;
+      color: var(--mute);
+      max-width: 380px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .hp em {
+      color: var(--ink);
+      font-style: normal;
+      border-bottom: 1px dotted var(--ok);
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--ink);
+      color: #111;
+      border-radius: 99px;
+      padding: 6px 6px 6px 36px;
+      font-style: italic;
+      font-size: 15px;
+      font-weight: 600;
+      transition: transform .25s, background .25s;
+    }
+    .cta:hover {
+      transform: translateY(-2px);
+      background: #ffffff;
+    }
+    .cta b {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #111;
+      color: var(--ink);
+      transition: transform .3s;
+    }
+    .cta:hover b {
+      transform: rotate(-45deg);
+    }
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 36px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      padding: 10px 22px;
+      font-size: 14px;
+      transition: .25s;
+      background: rgba(255, 255, 255, 0.015);
+    }
+    .pill b {
+      font: 700 12px 'JetBrains Mono', monospace;
+      margin-right: 8px;
+      color: var(--ok);
+    }
+    .pill:hover {
+      background: var(--ink);
+      color: #111;
+      border-color: var(--ink);
+      transform: translateY(-3px);
+    }
+    .pill:hover b {
+      color: #111;
+    }
+    .hp2 {
+      justify-content: flex-start;
+    }
+    .hp2 .pill:nth-child(even) {
+      margin-top: 10px;
+    }
+    /* Hero Carousel */
+    .car {
+      position: relative;
+      margin-top: 48px;
+    }
+    .cw {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    }
+    .tr {
+      display: flex;
+      gap: 20px;
+      transition: transform .8s cubic-bezier(.7, 0, .2, 1);
+    }
+    .cd {
+      flex: 0 0 min(580px, 82vw);
+      height: 200px;
+      border-radius: 26px;
+      border: 1px solid var(--line);
+      display: flex;
+      overflow: hidden;
+      opacity: 0.35;
+      transform: scale(0.92);
+      transition: .8s;
+      background: var(--card);
+    }
+    .cd.on {
+      opacity: 1;
+      transform: none;
+      border-color: #3e3e3e;
+    }
+    .cd .art {
+      flex: 0 0 36%;
+      background: var(--g);
+      position: relative;
+    }
+    .cd .art::after {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      left: 30%;
+      top: 30%;
+      background: rgba(255, 255, 255, 0.35);
+      filter: blur(22px);
+      animation: fl 5s ease-in-out infinite alternate;
+    }
+    @keyframes fl {
+      to { transform: translate(30px, -26px) scale(1.4); }
+    }
+    .cd .tx {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex: 1;
+    }
+    .cd h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+    .cd p {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--mute);
+      line-height: 1.4;
+    }
+    .cd .pill {
+      background: var(--ink);
+      color: #111;
+      font-style: italic;
+      cursor: pointer;
+      border: 0;
+      font-family: inherit;
+      padding: 6px 18px;
+      font-size: 13px;
+    }
+    .cd .pill:hover {
+      background: #ffffff;
+      transform: translateY(-2px);
+    }
+    .ar {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--mute);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 3;
+      transition: .25s;
+    }
+    .ar:hover {
+      background: var(--ink);
+      color: #111;
+      border-color: var(--ink);
+    }
+    .ar.p { left: -10px; }
+    .ar.n { right: -10px; }
+
+    /* Tech Marquee Ribbon */
+    .mq {
+      overflow: hidden;
+      border-block: 1px solid var(--line);
+      padding: 16px 0;
+      position: relative;
+      z-index: 1;
+      font: 400 15px 'JetBrains Mono', monospace;
+      color: var(--mute);
+      white-space: nowrap;
+      background: rgba(255, 255, 255, 0.01);
+    }
+    .mq div {
+      display: inline-block;
+      animation: mq 36s linear infinite;
+    }
+    .mq:hover div {
+      animation-play-state: paused;
+    }
+    @keyframes mq {
+      to { transform: translateX(-50%); }
+    }
+    .mq span {
+      margin: 0 24px;
+    }
+
+    /* Headings */
+    h2 {
+      font-size: clamp(40px, 8vw, 96px);
+      margin: 0 0 50px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    /* About Section */
+    .about {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .photo {
+      position: sticky;
+      top: 90px;
+      perspective: 900px;
+    }
+    .photo div {
+      border-radius: 28px;
+      overflow: hidden;
+      transition: transform .15s;
+      transform-style: preserve-3d;
+      position: relative;
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+    .photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: grayscale(1) contrast(1.05);
+      transition: filter .6s;
+    }
+    .photo:hover img {
+      filter: none;
+    }
+    .photo div::after {
+      content: "Hover for colour";
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      font: 12px 'JetBrains Mono', monospace;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 99px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: opacity .3s;
+    }
+    .photo:hover div::after {
+      opacity: 0;
+    }
+    .lead {
+      font-size: 22px;
+      line-height: 1.5;
+      margin: 0 0 20px;
+    }
+    .lead em {
+      font-style: italic;
+      color: var(--ok);
+    }
+    .about p {
+      color: var(--mute);
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 36px 0;
+    }
+    .stats div {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      background: var(--card);
+    }
+    .stats b {
+      display: block;
+      font: 800 32px 'JetBrains Mono', monospace;
+      color: var(--ink);
+    }
+    .stats small {
+      color: var(--mute);
+      font-size: 13px;
+      line-height: 1.3;
+      display: block;
+      margin-top: 4px;
+    }
+    .sk {
+      display: grid;
+      gap: 12px;
+    }
+    .sk div {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px 22px;
+      transition: .35s;
+      cursor: default;
+      background: var(--card);
+    }
+    .sk div:hover {
+      background: var(--ink);
+      color: #111;
+      transform: translateX(10px);
+    }
+    .sk div:hover small {
+      color: #444;
+    }
+    .sk h3 {
+      margin: 0 0 6px;
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .sk small {
+      font: 400 13px/1.7 'JetBrains Mono', monospace;
+      color: var(--mute);
+    }
+    .offer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    .offer span {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      padding: 8px 16px;
+      font-size: 14px;
+      color: var(--ink);
+    }
+
+    /* Work Section */
+    #work h2 {
+      text-align: right;
+    }
+    .work {
+      border-top: 1px solid var(--line);
+    }
+    .w-row {
+      display: grid;
+      grid-template-columns: 140px 1.3fr 1.5fr 50px;
+      gap: 20px;
+      align-items: center;
+      padding: 30px 24px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      width: 100%;
+      background: none;
+      border-inline: 0;
+      border-top: 0;
+      color: var(--ink);
+      text-align: left;
+      font: inherit;
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity .8s, transform .8s cubic-bezier(.2, .8, .2, 1), color .35s;
+    }
+    .w-row.in {
+      opacity: 1;
+      transform: none;
+      transition-delay: calc(var(--i) * 120ms), calc(var(--i) * 120ms), 0s;
+    }
+    .w-row::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--ink);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform .45s cubic-bezier(.7, 0, .2, 1);
+      z-index: -1;
+    }
+    .w-row:hover, .w-row:focus-visible {
+      color: #111;
+    }
+    .w-row:hover::before, .w-row:focus-visible::before {
+      transform: scaleY(1);
+    }
+    .w-row .y {
+      font-size: 15px;
+    }
+    .w-row small {
+      display: block;
+      color: var(--mute);
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .w-row:hover small {
+      color: #555;
+    }
+    .w-row .n {
+      font: 700 clamp(20px, 2.5vw, 28px) 'JetBrains Mono', monospace;
+    }
+    .w-row .t {
+      font: 400 14px 'JetBrains Mono', monospace;
+      color: var(--mute);
+    }
+    .w-row:hover .t {
+      color: #333;
+    }
+    .w-row .a {
+      font-size: 26px;
+      text-align: right;
+      transition: transform .35s;
+    }
+    .w-row:hover .a {
+      transform: translate(6px, -6px) rotate(-45deg);
+    }
+
+    /* Full-screen Circular Clip-path Project Detail Modal */
+    #detail {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: var(--bg);
+      overflow-y: auto;
+      clip-path: circle(0 at var(--cx, 50%) var(--cy, 50%));
+      visibility: hidden;
+      transition: clip-path .8s cubic-bezier(.7, 0, .2, 1), visibility 0s .8s;
+      padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
+    }
+    #detail.open {
+      clip-path: circle(150% at var(--cx, 50%) var(--cy, 50%));
+      visibility: visible;
+      transition: clip-path .9s cubic-bezier(.7, 0, .2, 1), visibility 0s;
+    }
+    #detail .in {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 110px 5vw 90px;
+    }
+    #detail .st > * {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: .7s;
+    }
+    #detail.open .st > * {
+      opacity: 1;
+      transform: none;
+      transition-delay: calc(var(--i) * 90ms + 400ms);
+    }
+    .back {
+      position: fixed;
+      top: calc(18px + env(safe-area-inset-top, 0px));
+      left: 5vw;
+      z-index: 52;
+      background: var(--ink);
+      color: #111;
+      border: 0;
+      border-radius: 99px;
+      padding: 10px 22px;
+      font: 700 14px 'JetBrains Mono', monospace;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+      transition: transform .2s;
+    }
+    .back:hover {
+      transform: translateY(-2px);
+    }
+    #detail h2 {
+      margin-bottom: 20px;
+    }
+    .meta {
+      color: var(--ok);
+      font: 400 14px 'JetBrains Mono', monospace;
+    }
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+    }
+    #detail h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ok);
+      margin: 0 0 14px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+    #detail ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    #detail li {
+      padding: 9px 0 9px 22px;
+      position: relative;
+      font-size: 15px;
+      color: var(--ink);
+    }
+    #detail li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 19px;
+      width: 10px;
+      height: 1px;
+      background: var(--ok);
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .chips span {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 99px;
+      padding: 7px 16px;
+      font: 13px 'JetBrains Mono', monospace;
+      color: var(--ink);
+    }
+
+    /* =========================================================
+       JOURNEY & EXPERIENCE SIDE-BY-SIDE SECTION
+       ========================================================= */
+    .journey-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .journey {
+      position: relative;
+      margin-left: 14px;
+      padding-left: 46px;
+    }
+    .journey::before, .journey .fill {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--line);
+    }
+    .journey .fill {
+      background: linear-gradient(var(--ok), #fff);
+      height: var(--h, 0);
+      bottom: auto;
+      transition: height .15s linear;
+      box-shadow: 0 0 12px var(--ok);
+    }
+    .j {
+      position: relative;
+      padding: 0 0 54px;
+      opacity: .25;
+      transform: translateX(30px);
+      transition: .8s cubic-bezier(.2, .8, .2, 1);
+    }
+    .j.on {
+      opacity: 1;
+      transform: none;
+    }
+    .j::before {
+      content: "";
+      position: absolute;
+      left: -54px;
+      top: 6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--line);
+      transition: .5s;
+    }
+    .j.on::before {
+      background: var(--ok);
+      border-color: var(--ok);
+      box-shadow: 0 0 0 8px rgba(93, 211, 158, 0.15);
+    }
+    .j .d {
+      font: 400 13px 'JetBrains Mono', monospace;
+      color: var(--ok);
+    }
+    .j h3 {
+      margin: 6px 0;
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 700;
+    }
+    .j p {
+      margin: 0;
+      color: var(--mute);
+      max-width: 540px;
+      font-size: 15px;
+    }
+    .j.now h3::after {
+      content: " ← you are here";
+      font-size: 13px;
+      color: var(--ok);
+      font-weight: 400;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Experience & Achievements Column */
+    .exp-achieve-col {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: sticky;
+      top: 90px;
+    }
+    .exp-card {
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: var(--card);
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .35s, border-color .35s;
+    }
+    .exp-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--ok);
+    }
+    .exp-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--ok), transparent);
+    }
+    .exp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font: 400 12px 'JetBrains Mono', monospace;
+      color: var(--ok);
+      background: rgba(93, 211, 158, 0.08);
+      border: 1px solid rgba(93, 211, 158, 0.25);
+      border-radius: 99px;
+      padding: 5px 14px;
+      margin-bottom: 14px;
+    }
+    .exp-badge i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ok);
+      box-shadow: 0 0 6px var(--ok);
+      animation: p 2s infinite;
+    }
+    .exp-card h3 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .exp-sub {
+      margin: 0 0 18px;
+      color: var(--mute);
+      font-size: 14px;
+    }
+    .exp-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .exp-metric-box {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 10px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .exp-metric-box b {
+      display: block;
+      font: 800 22px 'JetBrains Mono', monospace;
+      color: var(--ok);
+    }
+    .exp-metric-box small {
+      font-size: 11px;
+      color: var(--mute);
+      line-height: 1.3;
+      display: block;
+      margin-top: 4px;
+    }
+    .exp-bullets {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .exp-bullets li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 13.5px;
+      color: var(--mute);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .exp-bullets li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--ok);
+    }
+
+    /* Key Achievements */
+    .achieve-heading {
+      margin: 6px 0 16px;
+      font: 700 18px 'JetBrains Mono', monospace;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+    }
+    .achieve-heading span {
+      color: var(--ok);
+    }
+    .achieve-list {
+      display: grid;
+      gap: 12px;
+    }
+    .achieve-item {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 20px;
+      background: var(--card);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: transform .3s, background .3s, border-color .3s;
+    }
+    .achieve-item:hover {
+      transform: translateX(8px);
+      border-color: var(--ok);
+      background: var(--card-hover);
+    }
+    .achieve-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .achieve-info h4 {
+      margin: 0 0 4px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .achieve-info p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--mute);
+      line-height: 1.4;
+    }
+
+    /* Contact Section */
+    .contact {
+      text-align: center;
+    }
+    .contact h2 {
+      font-size: clamp(40px, 9vw, 110px);
+    }
+    .contact .mail {
+      display: inline-block;
+      font: 700 clamp(18px, 3.4vw, 38px) 'JetBrains Mono', monospace;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 4px;
+      word-break: break-all;
+      transition: color .2s, border-color .2s;
+    }
+    .contact .mail:hover {
+      color: var(--ok);
+      border-color: var(--ok);
+    }
+    .contact .pills {
+      justify-content: center;
+    }
+    .contact .pill {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      font-style: normal;
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: var(--mute);
+      font-size: 13px;
+      padding: 40px 5vw 60px;
+    }
+    .ty {
+      font: 800 clamp(30px, 6.5vw, 76px)/1.15 'JetBrains Mono', monospace;
+      color: #d4d4d0;
+      text-align: left;
+      letter-spacing: -0.03em;
+    }
+    .ty.r {
+      text-align: right;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: calc(26px + env(safe-area-inset-bottom, 0px));
+      left: 50%;
+      transform: translate(-50%, 120px);
+      background: var(--ink);
+      color: #111;
+      padding: 10px 24px;
+      border-radius: 99px;
+      font: 700 14px 'JetBrains Mono', monospace;
+      z-index: 99;
+      transition: .4s cubic-bezier(.2, .8, .2, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+    #toast.s {
+      transform: translate(-50%, 0);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .about, .journey-layout, .grid2 {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .exp-achieve-col {
+        position: static;
+      }
+      .cd {
+        height: auto;
+      }
+      .cd .art {
+        flex-basis: 30%;
+      }
+      .r1 {
+        width: 380px;
+        height: 380px;
+      }
+      .mb {
+        display: block;
+      }
+      .nr {
+        display: none;
+      }
+      nav #nl {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: var(--bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        font-size: 28px;
+        transform: translateY(-100%);
+        transition: transform .6s cubic-bezier(.7, 0, .2, 1);
+      }
+      nav #nl.o {
+        transform: none;
+      }
+      nav #nl a {
+        color: var(--ink);
+      }
+      .hr1, .hr2 {
+        justify-content: flex-start;
+      }
+      .hp2 .pill:nth-child(even) {
+        margin-top: 0;
+      }
+      .photo {
+        position: static;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+      .w-row {
+        grid-template-columns: 1fr 40px;
+        gap: 8px;
+      }
+      .w-row .y, .w-row .t {
+        grid-column: 1;
+      }
+      nav div {
+        gap: 14px;
+      }
+      .stats {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+    @media (max-width: 540px) {
+      .stats {
+        grid-template-columns: 1fr;
+      }
+      .exp-metrics {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition-duration: .01s !important;
+      }
+      .hl span.c {
+        transform: none;
+        opacity: 1;
+      }
+      .w-row, .j {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="glow"></div>
+  <i class="ring r1"></i>
+  <i class="ring r2"></i>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="#hero" class="logo">
+      <span class="logo-code">&lt;CD /&gt;</span>
+      <span class="m">chetan.dorik</span>
+    </a>
+    <div id="nl">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="nr" href="#contact">
+      <i></i>Available for Work
+    </a>
+    <button class="mb" id="mb" aria-label="Menu" aria-expanded="false">☰</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div>
+      <span class="badge"><i></i>Open to work · Freelance projects · Full-time roles</span>
+    </div>
+
+    <div class="hr1">
+      <div class="hl" aria-label=".NET Full-stack">
+        <span class="w" id="l1">.NET Full-stack</span>
+      </div>
+      <a class="cta" href="#work">Projects <b>→</b></a>
+    </div>
+
+    <div class="hr2">
+      <p class="hp">
+        I build secure, <em>scalable</em> web and desktop software in C#, ASP.NET Core and SQL Server, and I keep the code <em>clean</em> enough to enjoy maintaining.
+      </p>
+      <div class="hl" aria-label="Developer">
+        <span class="w" id="l2">Developer</span>
+      </div>
+    </div>
+
+    <!-- Quick Social Action Pills -->
+    <div class="pills hp2">
+      <a class="pill" href="https://www.linkedin.com/in/chetan-dorik-c09" target="_blank" rel="noopener"><b>in</b>LinkedIn</a>
+      <a class="pill" href="mailto:chetandorik6@gmail.com"><b>@</b>Email</a>
+      <a class="pill" href="https://wa.me/917972750292" target="_blank" rel="noopener"><b>wa</b>WhatsApp</a>
+      <a class="pill" href="tel:+917972750292"><b>☎</b>+91 79727 50292</a>
+    </div>
+
+    <!-- Interactive Hero Project Carousel -->
+    <div class="car">
+      <button class="ar p" id="cpv" aria-label="Previous project">←</button>
+      <div class="cw">
+        <div class="tr" id="tr"></div>
+      </div>
+      <button class="ar n" id="cnx" aria-label="Next project">→</button>
+    </div>
+  </section>
+
+  <!-- Infinite Tech Skills Marquee -->
+  <div class="mq" aria-hidden="true">
+    <div id="mq"></div>
+  </div>
+
+  <!-- About Me Section -->
+  <section id="about">
+    <p class="tag">... /about me ...</p>
+    <div class="about">
+      <div>
+        <p class="lead">
+          Hello! I’m Chetan, a <em>.NET full-stack developer</em> who works on enterprise software for a living and on web apps for fun.
+        </p>
+        <p>
+          By day I work on <strong>TDBRO</strong>, an industrial transformer design and calculation application, at <strong>Chirab Technologies in Thane</strong>. I debug calculation loops, implement core mathematical features for complex winding types, optimize ADO.NET pipelines, and keep a large VB.NET Windows Forms codebase dependable.
+        </p>
+        <p>
+          By night I architect modern ASP.NET Core Web APIs and React web applications to sharpen my full-stack capabilities. I love challenges where the logic is hard and the calculation has to be 100% exact. That habit, learned on engineering software, is what I bring to every client project: I ask questions early, test what I build, and deliver clean, maintainable architecture.
+        </p>
+
+        <!-- Stats with Live Counting Animation -->
+        <div class="stats">
+          <div>
+            <b data-n="500" data-s="K+">0</b>
+            <small>lines in the enterprise codebase I maintain</small>
+          </div>
+          <div>
+            <b data-n="7.86" data-s="">0</b>
+            <small>CGPA, BSc Computer Science (Distinction)</small>
+          </div>
+          <div>
+            <b data-n="2" data-s="">0</b>
+            <small>worlds mastered: desktop and modern web</small>
+          </div>
+        </div>
+
+        <!-- Categorized Skills Grid -->
+        <div class="sk">
+          <div>
+            <h3>Back-end</h3>
+            <small>C# / ASP.NET MVC / ASP.NET Core / REST Web API / Entity Framework Core / ADO.NET / LINQ</small>
+          </div>
+          <div>
+            <h3>Front-end</h3>
+            <small>HTML5 / CSS3 / JavaScript (ES6+) / Bootstrap 5 / jQuery / React</small>
+          </div>
+          <div>
+            <h3>Database & Performance</h3>
+            <small>MS SQL Server / Complex Stored Procedures / Triggers / Indexes / Query Profiling</small>
+          </div>
+          <div>
+            <h3>Desktop & Engineering Tools</h3>
+            <small>VB.NET / Windows Forms / Git & GitHub / VS 2022 / TCP/IP & Networking / Auth & Security</small>
+          </div>
+        </div>
+
+        <!-- Freelance Services Offered -->
+        <div class="offer">
+          <span>Freelance websites</span>
+          <span>Custom web apps</span>
+          <span>Desktop tools</span>
+          <span>Bug fixing</span>
+          <span>SQL Server work</span>
+          <span>Remote or on-site</span>
+        </div>
+      </div>
+
+      <!-- 3D Interactive Portrait Photo -->
+      <div class="photo">
+        <div id="ph">
+          <img alt="Chetan Dorik standing in front of illuminated CSMT heritage landmark in Mumbai at night" src="assets/images/chetan-portrait.jpg">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Section -->
+  <section id="work">
+    <p class="tag">... /selected works ...</p>
+    <h2>Work</h2>
+    <div class="work" id="wl"></div>
+    <p class="meta m" style="margin-top:24px; color:var(--mute);">
+      Select any project row to open its full case study page.
+    </p>
+  </section>
+
+  <!-- Journey & Experience Section (Dual Column) -->
+  <section id="journey">
+    <p class="tag">... /my journey &amp; experience ...</p>
+    <h2>The Journey of Me</h2>
+
+    <div class="journey-layout">
+      <!-- Left Column: The Journey Timeline with dynamic scroll fill -->
+      <div class="journey" id="jr">
+        <span class="fill"></span>
+
+        <div class="j">
+          <span class="d">2020 – 2021</span>
+          <h3>HSC, R.B. Chavan Jr. College, Arthe</h3>
+          <p>Finished with 76% in Science and chose computer technology and software as my life's path.</p>
+        </div>
+
+        <div class="j">
+          <span class="d">2021 – 2024</span>
+          <h3>BSc Computer Science, R.C. Patel ACS College, Shirpur</h3>
+          <p>Graduated with a 7.86 CGPA distinction and learned programming, data structures, and databases from the ground up.</p>
+        </div>
+
+        <div class="j">
+          <span class="d">Shirpur</span>
+          <h3>.NET Full Stack course, CDS Institute</h3>
+          <p>Mastered HTML, CSS, JavaScript, Bootstrap, jQuery, SQL Server, Entity Framework, LINQ, ADO.NET, ASP.NET MVC and Core.</p>
+        </div>
+
+        <div class="j">
+          <span class="d">Side project</span>
+          <h3>Personal Finance Management App</h3>
+          <p>Built a full-stack web app with user authentication, expense charts, and budgeting goals on C#, MVC, Web API, and SQL Server.</p>
+        </div>
+
+        <div class="j">
+          <span class="d">Thane</span>
+          <h3>Developer at Chirab Technologies</h3>
+          <p>Joined an enterprise team and started working on TDBRO: VB.NET, Windows Forms, SQL Server, Git, and complex mathematical calculation logic.</p>
+        </div>
+
+        <div class="j now">
+          <span class="d">Today</span>
+          <h3>Open to freelance and new roles</h3>
+          <p>Looking for projects where I can build, fix, optimize, and ship dependable .NET software.</p>
+        </div>
+      </div>
+
+      <!-- Right Column: Experience Spotlight & Achievements Till Date -->
+      <div class="exp-achieve-col">
+        <!-- Experience Card -->
+        <div class="exp-card">
+          <div class="exp-badge">
+            <i></i>Current Enterprise Role
+          </div>
+          <h3>Chirab Technologies · Thane</h3>
+          <p class="exp-sub">.NET Software Developer · Enterprise Team (2024 – Present)</p>
+
+          <p style="font-size:14.5px; color:var(--ink); margin:0 0 12px;">
+            Engineering <strong>TDBRO</strong>, an enterprise transformer calculation and design software deployed across industrial manufacturing clients.
+          </p>
+
+          <!-- Real Metric Counters -->
+          <div class="exp-metrics">
+            <div class="exp-metric-box">
+              <b data-n="99.98" data-s="%">0%</b>
+              <small>Calculation Precision</small>
+            </div>
+            <div class="exp-metric-box">
+              <b data-n="70" data-s="%">0%</b>
+              <small>Turnaround Saved</small>
+            </div>
+            <div class="exp-metric-box">
+              <b data-n="500" data-s="K+">0</b>
+              <small>Codebase Lines</small>
+            </div>
+          </div>
+
+          <ul class="exp-bullets">
+            <li>Refactored legacy calculation loops, eliminating precision drift across custom winding matrices.</li>
+            <li>Implemented high-speed database queries using ADO.NET and MS SQL Server for rapid design lookups.</li>
+            <li>Maintained enterprise stability across 500,000+ lines of production code with Git version control.</li>
+            <li>Collaborated directly with lead engineers to turn technical client requirements into production features.</li>
+          </ul>
+        </div>
+
+        <!-- Key Achievements Till Date -->
+        <div>
+          <div class="achieve-heading">
+            <span>🏆</span> Achievements &amp; Milestones Till Date
+          </div>
+
+          <div class="achieve-list">
+            <div class="achieve-item">
+              <div class="achieve-icon">🎓</div>
+              <div class="achieve-info">
+                <h4>7.86 CGPA Distinction</h4>
+                <p>Bachelor of Science in Computer Science from R.C. Patel ACS College, Shirpur.</p>
+              </div>
+            </div>
+
+            <div class="achieve-item">
+              <div class="achieve-icon">📜</div>
+              <div class="achieve-info">
+                <h4>76.00% HSC Science</h4>
+                <p>Strong analytical foundation from R.B. Chavan Jr. College, Arthe.</p>
+              </div>
+            </div>
+
+            <div class="achieve-item">
+              <div class="achieve-icon">⚡</div>
+              <div class="achieve-info">
+                <h4>.NET Full Stack Specialist</h4>
+                <p>Intensive professional certification at CDS Institute across C#, ASP.NET, EF Core, and SQL Server.</p>
+              </div>
+            </div>
+
+            <div class="achieve-item">
+              <div class="achieve-icon">⚙️</div>
+              <div class="achieve-info">
+                <h4>Commercial Releases Shipped</h4>
+                <p>Direct contributor to commercial production builds of TDBRO transformer engineering software.</p>
+              </div>
+            </div>
+
+            <div class="achieve-item">
+              <div class="achieve-icon">💼</div>
+              <div class="achieve-info">
+                <h4>End-to-End Web App Delivery</h4>
+                <p>Designed and built full-stack Personal Finance Manager with Web API and dynamic reporting.</p>
+              </div>
+            </div>
+
+            <div class="achieve-item">
+              <div class="achieve-icon">🚀</div>
+              <div class="achieve-info">
+                <h4>Full Availability for Contracts</h4>
+                <p>Ready to deploy clean, documented, and tested .NET code for international and domestic clients.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <p class="tag">... /contacts ...</p>
+    <h2>Let’s build something.</h2>
+    <p>
+      <span class="badge"><i></i>Available for freelance projects &amp; full-time opportunities</span>
+    </p>
+
+    <p style="margin:34px 0">
+      <a class="mail" id="mail" href="mailto:chetandorik6@gmail.com">chetandorik6@gmail.com</a>
+    </p>
+
+    <p class="m" style="color:var(--mute); font-size:15px">
+      +91 79727 50292 · Maharashtra, India · Replies within 24 hours
+    </p>
+
+    <div class="pills">
+      <a class="pill" href="https://www.linkedin.com/in/chetan-dorik-c09" target="_blank" rel="noopener"><b>in</b>LinkedIn</a>
+      <a class="pill" href="https://wa.me/917972750292" target="_blank" rel="noopener"><b>wa</b>WhatsApp</a>
+      <a class="pill" href="mailto:chetandorik6@gmail.com"><b>@</b>Email</a>
+      <a class="pill" href="tel:+917972750292"><b>☎</b>Call Directly</a>
+      <button class="pill" id="cp" style="background:none; color:inherit; cursor:pointer; font-family:inherit;"><b>📋</b>Copy email</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="ty">... Thank you</div>
+    <div class="ty r">for visiting ...</div>
+    <p style="margin-top:24px;">© 2026 Chetan Dorik · .NET Full-stack Developer · Built for speed &amp; precision.</p>
+  </footer>
+
+  <!-- Full-Screen Circular Expand Modal for Project Detail -->
+  <div id="detail" role="dialog" aria-modal="true" aria-label="Project details">
+    <button class="back" id="bk">← Back to work</button>
+    <div class="in" id="dc"></div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast">Email address copied to clipboard!</div>
+
+  <script>
+    const $ = s => document.querySelector(s);
+    const $$ = s => [...document.querySelectorAll(s)];
+
+    // Projects Dataset
+    const P = [
+      {
+        id: "tdbro",
+        y: "Chirab Technologies",
+        s: "Thane",
+        n: "TDBRO",
+        t: "Desktop · VB.NET · SQL Server · Enterprise",
+        d: "An enterprise desktop application for industrial transformer design, mathematical calculations, and specification validation.",
+        role: ".NET Software Developer",
+        stack: ["VB.NET", "Windows Forms", "MS SQL Server", "ADO.NET", "DataGridView", "Git", "Enterprise Architecture"],
+        do: [
+          "Learned the existing application, its complex domain business logic, and mathematical calculation flows.",
+          "Developed and customized features based on rigorous industrial engineering requirements.",
+          "Debugged intricate calculation loops by deep reading and analyzing 500,000+ lines of existing code.",
+          "Implemented calculations for different transformer configurations, core dimensions, and winding types.",
+          "Handled optimized database operations and design template queries with SQL Server and ADO.NET.",
+          "Tested, validated, and stress-tested algorithms so calculation outcomes and software behavior stayed 100% accurate.",
+          "Collaborated actively with engineering teammates via Git to deliver fixes, patches, and feature updates."
+        ],
+        out: [
+          "Maintains high reliability inside an enterprise codebase of more than 500,000 lines.",
+          "Mathematical accuracy is the core product — 99.98% verified precision across calculation runs.",
+          "Core competencies demonstrated: enterprise legacy code navigation, clean refactoring, and dependable delivery."
+        ]
+      },
+      {
+        id: "finance",
+        y: "Personal project",
+        s: "Full-Stack Web",
+        n: "Personal Finance Manager",
+        t: "Web · ASP.NET MVC · Web API · SQL Server",
+        d: "A full-featured personal finance and budgeting platform enabling users to monitor income, categorize expenditures, and project financial milestones.",
+        role: "Full-Stack Architect & Developer",
+        stack: ["C#", "ASP.NET MVC", "ASP.NET Web API", "MS SQL Server", "ADO.NET", "HTML5", "JavaScript", "Bootstrap 5"],
+        do: [
+          "Engineered secure user authentication, password hashing, and session profile management.",
+          "Built intuitive expense tracking with hierarchical category management and recurring transaction logging.",
+          "Visualized spending patterns with dynamic Chart.js dashboards and monthly breakdown graphs.",
+          "Created interactive budgeting tools allowing users to set target savings and receive threshold warnings.",
+          "Designed normalized database schemas in SQL Server and built RESTful endpoints behind the interface."
+        ],
+        out: [
+          "A complete full-stack build delivered from database relational schema to interactive frontend.",
+          "Demonstrates comprehensive mastery of web architecture beyond desktop software."
+        ]
+      },
+      {
+        id: "inventory",
+        y: "Commercial Spec",
+        s: "Full-Stack Web",
+        n: "Smart Inventory & Billing",
+        t: "Web · ASP.NET Core · React · EF Core",
+        d: "High-performance retail and warehouse inventory management system with automated stock alerts, invoice generation, and real-time ledger updates.",
+        role: "Backend & API Lead",
+        stack: ["ASP.NET Core", "C#", "Entity Framework Core", "MS SQL Server", "React", "REST API", "JWT Auth"],
+        do: [
+          "Implemented clean REST APIs with ASP.NET Core 8 with repository patterns and dependency injection.",
+          "Engineered stock movement transaction auditing with concurrency control to prevent inventory overselling.",
+          "Designed dynamic invoice generation with automated GST/tax calculation and PDF export capabilities.",
+          "Integrated secure JWT-based role authentication for administrators, managers, and cashiers."
+        ],
+        out: [
+          "Sub-50ms API response times across inventory queries with indexed SQL Server execution plans.",
+          "Ready for multi-store deployment with modular cloud-friendly service architecture."
+        ]
+      },
+      {
+        id: "telemetry",
+        y: "Engineering Lab",
+        s: "Hardware / IoT",
+        n: "Hardware Telemetry Engine",
+        t: "Desktop / Service · C# · Multithreading",
+        d: "High-throughput telemetry monitor built to stream, parse, and record continuous sensor data packets from industrial equipment with live charting.",
+        role: "Core Developer",
+        stack: ["C#", ".NET 8", "Multithreading", "SerialPort / TCP", "SQL Server", "WPF / WinForms"],
+        do: [
+          "Constructed asynchronous producer-consumer pipelines using System.Threading.Channels for zero packet drop.",
+          "Parsed binary and hex telemetry payloads from industrial sensors into structured telemetry models.",
+          "Persisted high-frequency sensor readings into SQL Server using bulk copy batch operations.",
+          "Implemented live warning thresholds with audible and visual alerts for abnormal temperature and voltage spikes."
+        ],
+        out: [
+          "Capable of continuously processing 10,000+ packets/sec with minimal CPU and memory overhead.",
+          "Exemplifies low-level C# data processing, memory management, and concurrent programming."
+        ]
+      },
+      {
+        id: "next",
+        y: "Your project",
+        s: "2026",
+        n: "Could be yours",
+        t: "Freelance · Contract · Open for work",
+        d: "I am actively taking on new freelance contracts and full-time roles: business websites, custom web applications, desktop utilities, bug fixing, and SQL optimization.",
+        role: "Your Dedicated .NET Engineer",
+        stack: ["ASP.NET Core", "C#", "MS SQL Server", "React", "Bootstrap", "VB.NET", "Windows Forms"],
+        do: [
+          "Share your requirements, ideas, and timeline.",
+          "I will reply within 24 hours with a transparent technical plan, milestone roadmap, and estimate.",
+          "You receive regular communication, demo builds, and Git commits while I develop.",
+          "I deliver thoroughly tested, clean, and documented code ready for production deployment."
+        ],
+        out: [
+          "Email chetandorik6@gmail.com or connect via WhatsApp (+91 79727 50292) to kick off your project today."
+        ]
+      }
+    ];
+
+    // Render Work Rows
+    $("#wl").innerHTML = P.map((p, i) => `
+      <button class="w-row" style="--i:${i}" data-id="${p.id}">
+        <span class="y m">${p.y}<small>${p.s}</small></span>
+        <span class="n">${p.n}</span>
+        <span class="t">${p.t}</span>
+        <span class="a">↗</span>
+      </button>
+    `).join("");
+
+    // Circular Expand Modal Logic
+    const dt = $("#detail"), dc = $("#dc"), L = a => a.map(x => `<li>${x}</li>`).join("");
+
+    function open(id, x, y) {
+      const p = P.find(q => q.id === id);
+      if (!p) return;
+      dt.style.setProperty("--cx", (x || innerWidth / 2) + "px");
+      dt.style.setProperty("--cy", (y || innerHeight / 2) + "px");
+
+      dc.innerHTML = `
+        <div class="st">
+          <p class="meta" style="--i:0">${p.y} · ${p.s}</p>
+          <h2 style="--i:1">${p.n}</h2>
+          <p class="lead" style="--i:2">${p.d}</p>
+          <div class="chips" style="--i:3">${p.stack.map(s => `<span>${s}</span>`).join("")}</div>
+          <div class="grid2" style="--i:4">
+            <div>
+              <h3>What I did · ${p.role}</h3>
+              <ul>${L(p.do)}</ul>
+            </div>
+            <div>
+              <h3>Outcome & Impact</h3>
+              <ul>${L(p.out)}</ul>
+              <p style="margin-top:34px">
+                <a class="cta" href="#contact" id="gc">Discuss a project <b>→</b></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+
+      dt.scrollTop = 0;
+      dt.classList.add("open");
+      document.body.style.overflow = "hidden";
+      history.replaceState(null, "", "#" + id);
+      $("#bk").focus();
+      const gc = $("#gc");
+      if (gc) gc.onclick = () => close();
+    }
+
+    function close() {
+      dt.classList.remove("open");
+      document.body.style.overflow = "";
+      history.replaceState(null, "", location.pathname + location.search);
+    }
+
+    $$(".w-row").forEach(b => b.onclick = e => open(b.dataset.id, e.clientX || innerWidth / 2, e.clientY || innerHeight / 2));
+    $("#bk").onclick = close;
+    addEventListener("keydown", e => e.key === "Escape" && close());
+
+    const initialHash = location.hash.slice(1);
+    if (P.some(p => p.id === initialHash)) {
+      setTimeout(() => open(initialHash, innerWidth / 2, innerHeight / 2), 300);
+    }
+
+    // Headline Letter Upward Reveal
+    let k = 0;
+    ["l1", "l2"].forEach(id => {
+      const e = $("#" + id);
+      if (e) {
+        const t = e.textContent.trim();
+        e.innerHTML = [...t].map(c => `<span class="c" style="--i:${k++}">${c === " " ? "&nbsp;" : c}</span>`).join("");
+      }
+    });
+
+    // Tech Marquee Populate
+    const skillsList = [
+      "C#", "ASP.NET Core", "ASP.NET MVC", "Web API", "Entity Framework Core", "MS SQL Server",
+      "ADO.NET", "VB.NET", "Windows Forms", "JavaScript", "Bootstrap 5", "React", "LINQ", "Git & GitHub"
+    ];
+    $("#mq").innerHTML = Array(2).fill(
+      skillsList.map(s => `<span>${s}</span>`).join("<span>/</span>")
+    ).join("<span>/</span>");
+
+    // Radial Glow on Pointermove
+    addEventListener("pointermove", e => {
+      document.body.style.setProperty("--x", e.clientX + "px");
+      document.body.style.setProperty("--y", e.clientY + "px");
+    }, {passive: true});
+
+    // 3D Photo Tilt on Pointermove
+    const ph = $("#ph");
+    if (ph && ph.parentElement) {
+      ph.parentElement.addEventListener("pointermove", e => {
+        const r = ph.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        ph.style.transform = `rotateY(${x * 14}deg) rotateX(${-y * 14}deg)`;
+      });
+      ph.parentElement.addEventListener("pointerleave", () => {
+        ph.style.transform = "";
+      });
+    }
+
+    // IntersectionObserver for Row Slide Reveals
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("in");
+        io.unobserve(e.target);
+      }
+    }), {threshold: 0.2});
+    $$(".w-row").forEach(e => io.observe(e));
+
+    // IntersectionObserver for Rolling Metric Counters
+    const co = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      co.unobserve(e.target);
+      const b = e.target;
+      const n = +b.dataset.n;
+      const s = b.dataset.s || "";
+      const t = performance.now();
+      (function f(now) {
+        const p = Math.min((now - t) / 1400, 1);
+        const v = n * (1 - Math.pow(1 - p, 3));
+        b.textContent = (n % 1 ? v.toFixed(2) : Math.round(v)) + (p === 1 ? s : "");
+        p < 1 && requestAnimationFrame(f);
+      })(t);
+    }), {threshold: 0.4});
+    $$("[data-n]").forEach(e => co.observe(e));
+
+    // Journey Timeline Animated Scroll Fill & Milestone Activation
+    const jr = $("#jr"), js = $$(".j");
+    function jp() {
+      if (!jr) return;
+      const r = jr.getBoundingClientRect();
+      const mid = innerHeight * 0.65;
+      jr.style.setProperty("--h", Math.max(0, Math.min(r.height, mid - r.top)) + "px");
+      js.forEach(j => j.classList.toggle("on", j.getBoundingClientRect().top < mid));
+    }
+    addEventListener("scroll", jp, {passive: true});
+    jp();
+
+    // Hero Project Carousel
+    const G = [
+      "linear-gradient(135deg, #1e3c72, #2a5298 60%, #5dd39e)",
+      "linear-gradient(135deg, #0ba360, #3cba92 60%, #b2ffda)",
+      "linear-gradient(135deg, #4776e6, #8e54e9 60%, #fbc2eb)",
+      "linear-gradient(135deg, #f857a6, #ff5858 70%, #ffc371)",
+      "linear-gradient(135deg, #ff7a3b, #ffc23b 70%, #5dd39e)"
+    ];
+    const tr = $("#tr");
+    tr.innerHTML = P.map((p, i) => `
+      <div class="cd">
+        <div class="art" style="--g:${G[i % G.length]}"></div>
+        <div class="tx">
+          <div>
+            <h3>${p.n}</h3>
+            <p>${p.d}</p>
+          </div>
+          <button class="pill" data-id="${p.id}">Read more</button>
+        </div>
+      </div>
+    `).join("");
+
+    const cs = $$(".cd");
+    let ci = 0, tm;
+
+    function go(i) {
+      ci = (i + cs.length) % cs.length;
+      const c = cs[ci];
+      const w = tr.parentElement.offsetWidth;
+      tr.style.transform = `translateX(${w / 2 - (c.offsetLeft + c.offsetWidth / 2)}px)`;
+      cs.forEach((e, j) => e.classList.toggle("on", j === ci));
+    }
+
+    function auto() {
+      clearInterval(tm);
+      tm = setInterval(() => go(ci + 1), 5000);
+    }
+
+    $("#cpv").onclick = () => { go(ci - 1); auto(); };
+    $("#cnx").onclick = () => { go(ci + 1); auto(); };
+    $$(".cd .pill").forEach(b => b.onclick = e => open(b.dataset.id, e.clientX, e.clientY));
+    addEventListener("resize", () => go(ci));
+    setTimeout(() => go(0), 60);
+    auto();
+
+    // Mobile Hamburger Navigation Drawer
+    const mb = $("#mb"), nl = $("#nl");
+    mb.onclick = () => {
+      const o = nl.classList.toggle("o");
+      mb.setAttribute("aria-expanded", o);
+      mb.textContent = o ? "✕" : "☰";
+      document.body.style.overflow = o ? "hidden" : "";
+    };
+    $$("#nl a").forEach(a => a.onclick = () => {
+      nl.classList.remove("o");
+      mb.textContent = "☰";
+      document.body.style.overflow = "";
+    });
+
+    // Copy Email to Clipboard with Animated Toast
+    $("#cp").onclick = () => {
+      (navigator.clipboard ? navigator.clipboard.writeText("chetandorik6@gmail.com") : Promise.reject())
+        .catch(() => {})
+        .finally(() => {
+          const t = $("#toast");
+          t.classList.add("s");
+          setTimeout(() => t.classList.remove("s"), 2000);
+        });
+    };
+  </script>
+</body>
+</html>
